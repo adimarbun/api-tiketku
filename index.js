@@ -43,7 +43,7 @@ app.group("/api/v1", router => {
   //show events upcoming
   router.get("/upComing", EventsController.upcoming);
   //post order
-  router.post("/order", auth, OrdersController.postOrder);
+  router.post("/orders", auth, OrdersController.postOrder);
   //update order
   router.put("/order/:id", auth, OrdersController.updateOrders);
   //get order by id
