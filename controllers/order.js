@@ -14,39 +14,8 @@ exports.postOrder = (req, res) => {
     orderBy: userId,
     attachment: req.body.attachment
   };
-  Orders.create(request).then(order => {
-    Orders.findOne({
-      attributes: ["id", "quantity", "totalPrice", "attachment", "orderBy"],
-      include: [
-        {
-          model: Events,
-          as: "events",
-          attributes: {
-            exclude: ["createdAt", "updatedAt", "category", "createBy"]
-          },
-          include: [
-            {
-              model: Categories,
-              as: "categories",
-              attributes: ["id", "name"]
-            },
-            {
-              model: Users,
-              as: "users",
-              attributes: ["id", "name", "noTelp", "email", "img"]
-            }
-          ]
-        },
-        {
-          model: Status,
-          as: "statuses",
-          attributes: ["name"]
-        }
-      ],
-      where: { id: order.id }
-    }).then(response => {
-      res.send(response);
-    });
+  Orders.create(request).then(response => {
+    res.send(response);
   });
 };
 
